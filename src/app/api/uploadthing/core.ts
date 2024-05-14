@@ -3,9 +3,9 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
 import { PDFLoader } from 'langchain/document_loaders/fs/pdf'
-import { OpenAIEmbeddings } from "langchain/embeddings/openai"
-import { PineconeStore } from "langchain/vectorstores/pinecone"
-import { getPineconeClient } from "@/lib/pinecone";
+import { OpenAIEmbeddings } from "@langchain/openai"
+import { PineconeStore } from "@langchain/pinecone"
+import { pinecone } from "@/lib/pinecone"
  
 const f = createUploadthing();
 
@@ -42,8 +42,9 @@ export const ourFileRouter = {
         const pagesAmt = pageLevelDocs.length
 
         //vectorize and index entire doc
-        const pinecone = await getPineconeClient()
-        const pineconeIndex = pinecone.Index("pdfhelper")
+        console.log("creating pinecone")
+        //const pinecone = await getPineconeClient()
+        const pineconeIndex = pinecone.Index("pdfindex")
 
         const embeddings = new OpenAIEmbeddings({
           openAIApiKey: process.env.OPENAI_API_KEY
@@ -51,8 +52,8 @@ export const ourFileRouter = {
 
         await PineconeStore.fromDocuments(pageLevelDocs, embeddings, {
           pineconeIndex,
-          namespace: createdFile.id
-        })
+          namespace: createdFile.id,
+        });
 
         await db.file.update({
           data: {
@@ -71,6 +72,8 @@ export const ourFileRouter = {
             id: createdFile.id
           }
         })
+        console.dir(error, { depth: null });
+        console.log(`Error Type: ${typeof error}\n Error:${error}`);
       }
     }), 
 } satisfies FileRouter;

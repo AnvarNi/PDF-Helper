@@ -7,7 +7,7 @@ import Image from 'next/image'
 export default function Home() {
   return (
     <>
-      <WidthWrapper className='mb-12 mt-28 sm:mt-35 flex flex-col items-center justify-center text-center'>
+      <WidthWrapper className='mb-12 mt-24 sm:mt-35 flex flex-col items-center justify-center text-center'>
         <div className='mx-auto mb-4 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200 bg-white px-10 py-2 shadow-md backdrop-blur transition-all hover:border-gray-300 hover:bg-white/50'>
           <p className='text-md font-semibold text-gray-700'>
             PDF Helper
@@ -42,7 +42,7 @@ export default function Home() {
       <div className='mx-auto mb-32 mt-22 max-w-5xl sm:mt-26'>
         <div className='mb-12 px-6 lg:px-8'>
           <div className='mx-auto max-w-2xl sm:text-center'>
-            <h2 className='mt-2 font-bold text-4xl text-gray-900 sm:text-5xl'>
+            <h2 className='mt-2 font-bold text-4xl text-gray-900 sm:text-4xl'>
               Начните пользоватся в несколько шагов
             </h2>
           </div>
@@ -99,7 +99,7 @@ export default function Home() {
         <div className='mx-auto max-w-6xl px-6 lg:px-8'>
           <div className='mt-16 flow-root sm:mt-24'>
             <div className='-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4'>
-
+                <Image src='/welcomescreenpicture.jpg' alt='Пример обращения к чат боту' width={1920} height={951} quality={100} className='rounded-md bg-white p-2 sm:p-8 md:p-20 shadow-2xl ring-1 ring-gray-900/10'/>     
             </div>
           </div>
         </div>
