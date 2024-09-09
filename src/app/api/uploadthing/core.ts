@@ -41,9 +41,6 @@ export const ourFileRouter = {
 
         const pagesAmt = pageLevelDocs.length
 
-        //vectorize and index entire doc
-        console.log("creating pinecone")
-        //const pinecone = await getPineconeClient()
         const pineconeIndex = pinecone.Index("pdfindex")
 
         const embeddings = new OpenAIEmbeddings({
